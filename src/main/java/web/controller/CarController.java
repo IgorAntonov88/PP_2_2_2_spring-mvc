@@ -13,12 +13,14 @@ import java.util.List;
 @Controller
 public class CarController {
 
+
 	@GetMapping(value = "/cars")
 	public String printCars(@RequestParam(defaultValue = "5", required = false) int count, ModelMap model) {
 		CarService carService = new CarServiceImpl();
-		List<Car> list = carService.getCar(count);
-
-		model.addAttribute("cars", list);
+		count = count > 5 ? 5: count;
+		List<Car> cars = carService.getCar(count);
+		model.addAttribute("text", "Spisok mashin v tablice:");
+		model.addAttribute("cars", cars);
 		return "cars";
 	}
 }

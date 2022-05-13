@@ -10,7 +10,6 @@ import java.util.stream.Collectors;
 @Service
 public class CarServiceImpl implements CarService {
     private static List<Car> cars = new ArrayList<>();
-
     public CarServiceImpl() {
         cars.add(new Car("BMW",323,2005));
         cars.add(new Car("BMW",325,2007));
@@ -20,13 +19,10 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public List<Car> getCar(int count) {
-        if (count > 0 && count < 5) {
+    public List<Car> getCar(int pr) {
             return cars.
                     stream().
-                    limit(count).
+                    limit(pr).
                     collect(Collectors.toList());
-        }
-        return cars;
     }
 }
